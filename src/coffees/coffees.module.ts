@@ -4,14 +4,19 @@ import { CoffeesService } from './coffees.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
+import { COFFEE_BRANDS } from './coffees.constants';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
   providers: [
+    CoffeesService,
     {
-      provide: CoffeesService,
-      useClass: CoffeesService,
+      provide: COFFEE_BRANDS,
+      useFactory: async () => {
+        const coffeeBrands = await Promise.resolve(['b1', 'b2']);
+        return coffeeBrands;
+      },
     },
   ],
   exports: [CoffeesService],
