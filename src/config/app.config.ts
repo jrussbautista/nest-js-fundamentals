@@ -9,5 +9,6 @@ export default () => ({
     database: process.env.DATABASE_NAME,
     entities: ['dist/**/*.entity.js'],
     migrations: ['dist/src/migrations/*.js'],
+    synchronize: true,
   },
 });
