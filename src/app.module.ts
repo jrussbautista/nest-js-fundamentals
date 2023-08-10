@@ -11,7 +11,6 @@ import * as Joi from '@hapi/joi';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       load: [appConfig],
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
